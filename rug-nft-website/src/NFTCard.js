@@ -1,10 +1,10 @@
 import React from 'react'
 
 const NFTCard = ( {nft} ) => {
+
   return (
-    <div className=''>
-        <img src={nft.metadata.image} />
-        <button>Rug Mint</button>
+    <div className='card'>
+    <img src={nft.meta.content[0].url} />
     </div>
   )
 }

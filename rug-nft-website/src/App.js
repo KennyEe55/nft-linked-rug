@@ -3,11 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import Web3Modal from "web3modal";
 import { providers } from "ethers";
 import NFTContainer from './NFTContainer';
-import axios from 'axios';
 
 
 function App() {
-
   const web3ModalRef = useRef();
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState(null);
@@ -18,9 +16,8 @@ function App() {
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
     if (chainId !== 4) {
-      window.alert("Change the network to Rinkeby")
+      window.alert("Change the network to Rinkeby");
     }
-
     if(needSigner) {
       const signer = web3Provider.getSigner();
       return signer;
@@ -39,29 +36,14 @@ function App() {
     }
   }
 
-/*const getNFTData = async () => {
+const getNFTData = async () => {
     if(!walletAddress) return;
-    const response = await fetch (`https://testnets-api.opensea.io/api/v1/assets?owner=${walletAddress}&order_direction=desc&offset=0&limit=20&include_orders=false`);
+    const response = await fetch (`https://api.rarible.org/v0.1/items/byOwner/?owner=ETHEREUM:${walletAddress}`);
     const data = await response.json(); 
     console.log(data)
-    setNfts(data.assets)
-  }*/
+    setNfts(data.items)
+}
 
-  const getNFTData = async () => {
-  const apiKey = "DVOzepJlDMdUVLeYi1bMRNV8kVnw57rE";
-  const baseURL = `https://eth-mainnet.alchemyapi.io/nft/v2/${apiKey}/getNFTs/`;
-  // replace with the wallet address you want to query for NFTs
-  const ownerAddr = walletAddress;
-  var config = {
-    method: 'get',
-    url: `${baseURL}?owner=${ownerAddr}`
-  };
-  axios(config)
-  .then(response => setNfts(response.data.ownedNfts))
-  .catch(error => console.log(error))
-  }
-
-  
   useEffect(() => {
     getNFTData();
   }, [walletAddress])
@@ -97,7 +79,7 @@ function App() {
       <body>
       <div className='account'>
         Account: {walletAddress}
-      </div>
+        </div>
       {renderButton()}
       <NFTContainer nfts={nfts} />
       </body>
