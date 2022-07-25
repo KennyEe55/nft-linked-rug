@@ -75,16 +75,15 @@ const getNFTData = async () => {
   
 
   return (
+    <body>
     <div className="App">
-      <body>
       <div className='account'>
         Account: {walletAddress}
         </div>
       {renderButton()}
       <NFTContainer nfts={nfts} />
-      </body>
-    </div>
-    
+      </div>
+    </body>
   );
 }
 

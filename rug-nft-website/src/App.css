@@ -51,6 +51,7 @@ body {
     padding: var(--size-3);
     background: var(--surface-2);
     border-radius: var(--radius-3);
+    text-align: center;
 }
 
 .card > img {
@@ -67,19 +68,12 @@ img {
 img:hover {
     padding:10px;
     transition: 0.4s;
-  }   
-
-.button {
-  display: none;
-}
-
-.card:hover .button {
+  } 
+  
+.card:hover {
   display: block;
-  position: absolute;
   left: 0;
   right: 0;
   bottom: 20px;
   width: 100%;
-  text-align: center;
 }
-
