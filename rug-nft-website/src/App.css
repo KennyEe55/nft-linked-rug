@@ -60,11 +60,11 @@ body {
 }
 
 
-img {
+.nft-images {
     width: 50%;
     border-radius: 1rem;
   }
-img:hover {
+.nft-images:hover {
     padding:10px;
     transition: 0.4s;
   }   

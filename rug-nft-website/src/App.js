@@ -3,6 +3,9 @@ import React, { useEffect, useState, useRef } from "react";
 import Web3Modal from "web3modal";
 import { providers } from "ethers";
 import NFTContainer from './NFTContainer';
+import { Route, Link } from 'react-router-dom';
+import Form from './form';
+import Header from './Header';
 
 
 function App() {
@@ -11,30 +14,6 @@ function App() {
   const [walletAddress, setWalletAddress] = useState(null);
   const [nfts, setNfts] = useState([]);
 
-  const getProviderOrSigner = async (needSigner = false) => {
-    const provider = await web3ModalRef.current.connect();
-    const web3Provider = new providers.Web3Provider(provider);
-    const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 4) {
-      window.alert("Change the network to Rinkeby");
-    }
-    if(needSigner) {
-      const signer = web3Provider.getSigner();
-      return signer;
-    }
-    return web3Provider; 
-  }
-
-  const connectWallet = async() => {
-    try {
-      await getProviderOrSigner();
-      setWalletConnected(true);
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts'});
-      setWalletAddress(accounts[0]);
-    } catch (err) {
-      console.error(err)
-    }
-  }
 
 const getNFTData = async () => {
     if(!walletAddress) return;
@@ -59,22 +38,9 @@ const getNFTData = async () => {
       });
     }
      }, [walletConnected]);
-
-  const renderButton = () => {
-    if(!walletConnected) {
-      return (
-        <button onClick={connectWallet} className="button">
-          Connect Your Wallet
-        </button>
-      )
-    } 
-    return (
-      <div>Wallet Connected!</div>
-    )
-  }
   
-
   return (
+<<<<<<< Updated upstream
     <div className="App">
       <body>
       <div className='account'>
@@ -85,6 +51,15 @@ const getNFTData = async () => {
       </body>
     </div>
     
+=======
+      <div className="App">
+        <Header walletAddress={walletAddress} setWalletAddress={setWalletAddress}/>
+        <div className='account'>
+          <p>Account: {walletAddress}</p>
+        </div>
+        <NFTContainer nfts={nfts} />
+      </div>
+>>>>>>> Stashed changes
   );
 }
 
