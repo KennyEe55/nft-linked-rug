@@ -2,7 +2,7 @@ import React from 'react'
 import emailjs from 'emailjs-com';
 import { useRef } from 'react';
 
-const Form = () => {
+const Form = ( { bigNft }) => {
 const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
@@ -62,6 +62,12 @@ const form = useRef();
                                     <div className='form-group mb-3'>
                                         <label>Country</label>
                                         <input type="text" name="country" className='form-control' />
+                                    </div> 
+                                </div>
+                                <div className='col-md-6'>
+                                    <div className='form-group mb-3'>
+                                        <label>Nft Image</label>
+                                        <img src={bigNft} name="img" className='form-control' />
                                     </div> 
                                 </div>
                                 <button type='submit' className=' btn btn-primary'>Confirm Order</button>

@@ -15,7 +15,7 @@ root.render(
   <BrowserRouter>
   <Routes>
   <Route path="/" element={<App />} />
-  <Route path="/form" element={<Form />} />
+  <Route path="/form" element={<Form />}/>
   </Routes>
   </BrowserRouter>
   </React.StrictMode>

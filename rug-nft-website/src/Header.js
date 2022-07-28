@@ -41,16 +41,6 @@ const Header = ({ setWalletAddress }) => {
          });
        }
         }, [walletConnected]);   
-        
-          useEffect(() => {
-             if(!walletConnected) {
-              web3ModalRef.current = new Web3Modal({
-                network: "rinkeby",
-                providerOptions: {},
-                disableInjectedProvider: false, 
-              });
-            }
-             }, [walletConnected]);  
 
   return (
     <Navbar bg="dark" variant='dark'>

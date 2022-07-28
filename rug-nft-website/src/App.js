@@ -1,10 +1,7 @@
 import './App.css';
 import React, { useEffect, useState, useRef } from "react";
 import Web3Modal from "web3modal";
-import { providers } from "ethers";
 import NFTContainer from './NFTContainer';
-import { Route, Link } from 'react-router-dom';
-import Form from './form';
 import Header from './Header';
 
 
@@ -42,14 +39,14 @@ const getNFTData = async () => {
   
   return (
       <div className="App">
-        <Header walletAddress={walletAddress} setWalletAddress={setWalletAddress}/>
+        <Header setWalletAddress={setWalletAddress}/>
         <div className='account'>
           <p>Account: {walletAddress}</p>
         </div>
-        <div className='big-nft'>
-          <img src={bigNft} />
+        <div className='selected-nft'>
+          <img src={bigNft} className='big-nft'/>
         </div>
-        <NFTContainer nfts={nfts} setBigNft={setBigNft} bigNft={bigNft} />
+        <NFTContainer nfts={nfts} setBigNft={setBigNft}/>
       </div>
   );
 }

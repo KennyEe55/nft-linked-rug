@@ -83,3 +83,11 @@ body {
   text-align: center;
 }
 
+.selected-nft {
+  padding-bottom: 20px;
+}
+
+.big-nft {
+  height: 500px;
+  width:  500px;
+}
