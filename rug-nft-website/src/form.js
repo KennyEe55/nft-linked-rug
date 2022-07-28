@@ -1,6 +1,16 @@
 import React from 'react'
+import emailjs from 'emailjs-com';
+import { useRef } from 'react';
 
 const Form = () => {
+const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_wvg8pw2', 'template_nitjx59', form.current, '2R90rlu33705ETVdh')
+    e.target.reset()
+  };
+
+
   return (
     <div className='py-4'>
         <div className='container'>
@@ -11,7 +21,7 @@ const Form = () => {
                             <h4>Basic Information</h4>
                         </div>
                         <div className='card-body'>
-                            <div className='row'>
+                            <form ref={form} onSubmit={sendEmail} className='row'>
                                 <div className='col-md-6'>
                                     <div className='form-group mb-3'>
                                         <label>First Name</label>
@@ -54,7 +64,8 @@ const Form = () => {
                                         <input type="text" name="country" className='form-control' />
                                     </div> 
                                 </div>
-                            </div>
+                                <button type='submit' className=' btn btn-primary'>Confirm Order</button>
+                            </form>
                         </div>
                     </div>
                 </div>

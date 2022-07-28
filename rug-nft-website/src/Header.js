@@ -65,7 +65,11 @@ const Header = ({ setWalletAddress }) => {
             className='m-auto'
             />
             </Navbar.Text>
-            <Button onClick={connectWallet}>{walletConnected ? 'Wallet Connected' : 'Connect Your Wallet'}</Button>
+            <Button 
+            style={{
+              alignItems: "end",
+              marginLeft: "20px"}}
+            onClick={connectWallet}>{walletConnected ? 'Wallet Connected' : 'Connect Your Wallet'}</Button>
         </Container>
         </Navbar>
   )

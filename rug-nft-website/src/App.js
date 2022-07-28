@@ -13,6 +13,7 @@ function App() {
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState(null);
   const [nfts, setNfts] = useState([]);
+  const [bigNft, setBigNft] = useState([]);
 
 
 const getNFTData = async () => {
@@ -40,26 +41,16 @@ const getNFTData = async () => {
      }, [walletConnected]);
   
   return (
-<<<<<<< Updated upstream
-    <div className="App">
-      <body>
-      <div className='account'>
-        Account: {walletAddress}
-        </div>
-      {renderButton()}
-      <NFTContainer nfts={nfts} />
-      </body>
-    </div>
-    
-=======
       <div className="App">
         <Header walletAddress={walletAddress} setWalletAddress={setWalletAddress}/>
         <div className='account'>
           <p>Account: {walletAddress}</p>
         </div>
-        <NFTContainer nfts={nfts} />
+        <div className='big-nft'>
+          <img src={bigNft} />
+        </div>
+        <NFTContainer nfts={nfts} setBigNft={setBigNft} bigNft={bigNft} />
       </div>
->>>>>>> Stashed changes
   );
 }
 
