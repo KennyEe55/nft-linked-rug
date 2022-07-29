@@ -1,17 +1,19 @@
 import React from 'react'
 import emailjs from 'emailjs-com';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
+import { NFTProvider } from './nftContext';
+import FormCart from './FormCart';
 
-const Form = ( { bigNft }) => {
+const Form = ( ) => {
 const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm('service_wvg8pw2', 'template_nitjx59', form.current, '2R90rlu33705ETVdh')
     e.target.reset()
   };
-
-
+   
   return (
+    <NFTProvider>
     <div className='py-4'>
         <div className='container'>
             <div className='row'>
@@ -64,12 +66,7 @@ const form = useRef();
                                         <input type="text" name="country" className='form-control' />
                                     </div> 
                                 </div>
-                                <div className='col-md-6'>
-                                    <div className='form-group mb-3'>
-                                        <label>Nft Image</label>
-                                        <img src={bigNft} name="img" className='form-control' />
-                                    </div> 
-                                </div>
+                                <FormCart />
                                 <button type='submit' className=' btn btn-primary'>Confirm Order</button>
                             </form>
                         </div>
@@ -78,6 +75,7 @@ const form = useRef();
             </div>
         </div>
     </div>
+    </NFTProvider>
   )
 }
 
