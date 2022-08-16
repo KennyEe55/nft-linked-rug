@@ -1,0 +1,18 @@
+.invisible {
+    display: none;
+}
+
+.rug-pic {
+    width: 200px;
+    height: 200px;
+}
+
+.eth {
+    width: 15px;
+    height: 15px;
+    background-color: #322f3d;
+    border-radius: 5rem;
+    border-width: thick;
+    margin-left: 3px;
+    margin-bottom: 3px;
+}
