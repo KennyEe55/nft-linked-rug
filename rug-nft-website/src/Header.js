@@ -46,25 +46,7 @@ const Header = () => {
            disableInjectedProvider: false, 
          });
        }
-        }, [walletConnected]);     
-
-        const rugPayment = async() => {
-          try {
-            console.log("Making Payment...");
-            const signer = await getProviderOrSigner(true);
-            console.log(signer)
-            const rugContract = new Contract(RUG_CONTRACT_ADDRESS, abi, signer);
-            const tx = await rugContract.payment({
-              value: utils.parseEther("0.2"),
-            });
-            setLoading(true);
-            await tx.wait();
-            setLoading(false);
-            window.alert("Your order has been confirmed!");
-          } catch (err) {
-            console.error(err)  
-          }
-        };    
+        }, [walletConnected]);   
 
   return (
     <Navbar className="navbar">
@@ -89,7 +71,6 @@ const Header = () => {
               alignItems: "end",
               marginLeft: "20px"}}
             onClick={connectWallet}>{walletConnected ? 'Wallet Connected' : 'Connect Your Wallet'}</button>
-            <button onClick={rugPayment}>Mint Now</button>
         </Container>
         </Navbar>
   )

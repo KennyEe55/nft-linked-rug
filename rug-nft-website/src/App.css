@@ -47,6 +47,11 @@ body {
     overscroll-behavior-inline: contain;
     width: auto;
     height:auto;
+    cursor: grab;
+}
+
+.nft-container::-webkit-scrollbar {
+  width: 0;
 }
 
 .card { 

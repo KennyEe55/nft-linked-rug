@@ -6,3 +6,9 @@
     font-size: 13px;
     padding: 5px;
 }
+
+.navbar{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}

@@ -4,6 +4,7 @@ import NFTContainer from './NFTContainer';
 import Header from './Header';
 import NFTContext from "./nftContext";
 import SelectedRug from './SelectedRug';
+import Form from './form';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         </div>
         <SelectedRug />
         <NFTContainer />
+        <Form/>
       </div>
   );
 }

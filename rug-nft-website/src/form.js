@@ -13,7 +13,12 @@ const Form = ( ) => {
 const [loading, setLoading] = useState(false);
 const form = useRef();
 const web3ModalRef = useRef();
-const { selectedNft, dimensions, price, walletConnected } = useContext(NFTContext); 
+const { selectedNft, dimensions, price, walletConnected, walletAddress } = useContext(NFTContext); 
+
+function sendEmail (e) {
+    e.preventDefault();
+    emailjs.sendForm('service_wvg8pw2', 'template_nitjx59', form.current, process.env.REACT_APP_API_KEY);
+}
 
 
 const getProviderOrSigner = async (needSigner = false) => {
@@ -42,28 +47,29 @@ const getProviderOrSigner = async (needSigner = false) => {
    }
     }, [walletConnected]);
 
-const rugPayment = async() => {
+const makePayment = async() => {
     try {
-      //if(price >= 0.20){
+      if(price >= 0.20){
       console.log("Making Payment");
       const signer = await getProviderOrSigner(true);
       const rugContract = new Contract(RUG_CONTRACT_ADDRESS, abi, signer);
       const tx = await rugContract.payment({
-        value: utils.parseEther("0.2"),
+        value: utils.parseEther(price),
       });
       setLoading(true);
       await tx.wait();
       setLoading(false);
       window.alert("Your order has been confirmed!");
-    //} else {
+    } else {
       window.alert("Error: Value of ETH is too low! Please try again later. ")
-    //}
+    }
     } catch (err) {
       console.error(err)  
     }
   }; 
    
   return (
+    <section id='form'>
     <div className='py-4'>
         <div className='container'>
             <div className='row'>
@@ -77,7 +83,6 @@ const rugPayment = async() => {
                     <img src={selectedNft} className="rug-pic"/>
                     <p>Dimensions: {dimensions}</p>
                     <p>Subtotal: {price}<img src={ETH} className="eth"/></p>
-                    <button onClick={rugPayment}>Mint your Rug</button>
                     </div>
                     </div> 
                     </div> 
@@ -87,7 +92,7 @@ const rugPayment = async() => {
                             <h4>Basic Information</h4>
                         </div>
                         <div className='card-body'>
-                            <form ref={form} className='row'>
+                            <form ref={form} className='row' onSubmit={sendEmail}>
                                 <div className='col-md-6'>
                                     <div className='form-group mb-3'>
                                         <label>First Name</label>
@@ -130,19 +135,19 @@ const rugPayment = async() => {
                                         <input type="text" name="country" className='form-control' />
                                     </div> 
                                 </div>
-                                <div className='col-md-6'>
                                     <div className='invisible'>
                                         <label>NFT Image</label>
                                         <input type="text" name="img" className='invisible' defaultValue={`<img src="${selectedNft}"/>`} />
                                     </div> 
-                                </div>
-                                <div className='col-md-6'>
                                     <div className='invisible'>
                                         <label>NFT Dimensions</label>
                                         <input type="text" name="dimensions" className='invisible' defaultValue={dimensions} />
-                                    </div> 
+                                    </div>
+                                    <div className='invisible'>
+                                        <label>Wallet Address</label>
+                                        <input type="text" name="walletAddress" className='invisible' defaultValue={walletAddress} />
                                 </div>
-                                <button type='submit' onClick={rugPayment} className=' btn btn-primary ml-3'>Confirm Order</button>
+                                <button type='submit' onClick={makePayment} className='btn btn-primary ml-3'>Confirm Order</button>
                             </form>
                         </div>
                     </div>
@@ -150,6 +155,7 @@ const rugPayment = async() => {
             </div>
         </div>
     </div>
+    </section>
   )
 }
 

@@ -7,6 +7,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Form from './form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NFTProvider } from './nftContext';
+import Home from './Home';
 
 
 
@@ -16,8 +17,8 @@ root.render(
   <NFTProvider>
   <BrowserRouter>
   <Routes>
-  <Route path="/" element={<App />} />
-  <Route path="/form" element={<Form />}/>
+  <Route path="/" element={<Home />} />
+  <Route path="/app" element={<App />} />
   </Routes>
   </BrowserRouter>
   </NFTProvider>
